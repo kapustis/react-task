@@ -7,6 +7,8 @@
     "test_watch": "mocha --opts mocha.opts --watch app/**/*spec.js",
     "start": "node server",
     "build": "rimraf dist && webpack --config ./webpack.production.config.js --progress --profile --colors",
+    "dev": "concurrently \"npm run start\" \"npm run s-service\"",
+    "s-service": "npm run start --prefix streaming-service",
     "eslint": "eslint ."
   },
   "babel": {
@@ -46,6 +48,7 @@
     "babel-preset-react": "^6.5.0",
     "babel-preset-stage-0": "^6.5.0",
     "chai": "^4.1.1",
+    "concurrently": "^5.2.0",
     "css-loader": "^0.23.1",
     "enzyme": "^2.9.1",
     "eslint": "^2.9.0",
