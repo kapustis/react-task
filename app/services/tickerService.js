@@ -9,7 +9,7 @@ export const connect = (stockSymbol) => {
         console.log('connected');
 
         socket.on(stockSymbol, (data) => {
-            // console.log(data);
+            console.log(data);
         });
 
         socket.emit('ticker', stockSymbol);
