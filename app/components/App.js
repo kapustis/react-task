@@ -2,29 +2,41 @@ import React, {PureComponent} from 'react';
 import {connect} from 'react-redux';
 import {connect as connectTicker} from '../services';
 import {UPDATE_STOCK_TICKER, RESET_STOCK_TICKER} from '../reducers/types';
+import CardHeader from './CardHeader';
+import CardBody from './CardBody';
 import '../styles/application.scss';
+
+const LENGTH = 10;
 
 // The below line is here as an example of getting prices
 class App extends PureComponent {
+    constructor() {
+        super(undefined);
+        this.prices = [];
+    }
+
     componentDidMount() {
         connectTicker('AAPL', this.props.updateStockTicker);
     }
 
+    managePrices() {
+        const {price} = this.props.ticker.ticker;
+        if (!price) return;
+
+        this.prices.push(price);
+
+        if (this.prices.length > LENGTH) this.prices.splice(0, this.prices.length - LENGTH);
+    }
+
     render() {
+        this.managePrices();
         const {ticker} = this.props;
-        // console.log(ticker);
         return (
-              <div className="stock-ticker">
-                <p>{ticker.ticker.ticker}</p>
-                <p>{ticker.ticker.exchange}</p>
-                <p>{ticker.ticker.change}</p>
-                <p>{ticker.ticker.change_percent}</p>
-                <p>{ticker.ticker.dividend}</p>
-                <p>{ticker.ticker.last_trade_time}</p>
-                <p>{ticker.ticker.price}</p>
-                <p>{ticker.ticker.yield}</p>
-                <button type="button" onClick={this.props.resetStockTinker}> Reset</button>
-              </div>
+          <div className="stock-ticker">
+            <CardHeader initialPrice={this.prices[0]} ticker={ticker.ticker} />
+             <CardBody prices={this.prices} />
+             {/* <button type="button" onClick={this.props.resetStockTinker}> Reset</button>*/}
+          </div>
         );
     }
 }

@@ -1,3 +1,35 @@
+$decreased: #fe3b30;
+$increased: #34c759;
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, Helvetica, Arial, sans-serif;
+  background: linear-gradient(#aeffae, #3d99ff);
+  height: auto;
+  min-height: 100vh;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
 .stock-ticker {
+  text-align: center;
+  width: 65vw;
+  height: auto;
+  margin-left: 40px;
+  background: #f6f6f6;
+  border: 1px solid #000000bf;
+  border-radius: 10px;
+  box-shadow: 10px 10px 10px 0 rgba(0, 0, 0, 0.75);
 
 }
+
+@media only screen and (max-width: 600px) {
+  .stock-ticker {
+    width: 80vw;
+  }
+}
+
+@import "card-header";
+@import "card-body";

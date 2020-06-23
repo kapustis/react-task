@@ -28,8 +28,8 @@ app.get('/', function(req, res) {
 });
 
 run.sockets.on('connection', function(socket) {
-  socket.on('ticker', function(ticker, delay) {
-    trackTicker(socket, ticker, delay);
+  socket.on('ticker', function(ticker) {
+    trackTicker(socket, ticker);
   });
 });
 

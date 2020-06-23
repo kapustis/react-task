@@ -1,8 +1,8 @@
 'use strict';
 
-var path = require('path');
-var webpack = require('webpack');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
+let path = require('path');
+let webpack = require('webpack');
+let HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   devtool: 'eval-source-map',
@@ -53,6 +53,11 @@ module.exports = {
         use: 'babel-loader',
       },
       {
+        test: /\.jsx?$/,
+        exclude: /node_modules/,
+        loader: 'babel-loader'
+      },
+      {
         test: /\.json?$/,
         use: 'json-loader',
       },
@@ -69,6 +74,14 @@ module.exports = {
             loader: 'sass-loader', // compiles Sass to CSS
           },
         ],
+      },
+      {
+        test: /\.css$/,
+        use: [
+          {
+            loader: 'css-loader', // translates CSS into CommonJS
+          },
+        ]
       },
       {
         test: /\.woff(2)?(\?[a-z0-9#=&.]+)?$/,
