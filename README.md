@@ -1,5 +1,5 @@
 
-# React Test Task
+# React Task
 ## Contains:
 
 * A working example of a filterable table which you can play around with (look below).
